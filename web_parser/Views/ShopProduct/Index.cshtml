@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<web_parser.Data.ShopProduct>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shop products";
 }
 
-<h1>Index</h1>
+<h1>Shop products</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -31,10 +31,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductId)
+                    @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Shop.ShopId)
+                    @Html.DisplayFor(modelItem => item.Shop.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Link)

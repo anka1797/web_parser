@@ -18,6 +18,6 @@ namespace web_parser.Data
 
         public string Link { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
     }
 }

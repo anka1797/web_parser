@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,6 +18,24 @@ namespace web_parser.Controllers
         {
             _context = context;
         }
+
+        public async Task<IActionResult> Test()
+        {
+            using var httpClient = new HttpClient() { Timeout = TimeSpan.FromSeconds(10) };
+
+            var response = await httpClient.GetAsync("https://www.taen.ru/catalog/smesiteli/smesiteli-dlya-vanny/lemark-plyus-greys-lm1551c-dlya-vanny-s-ploskim-izlivom-300-mm/");
+            var responseData = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var StartBlock = "              <meta itemprop=\"price\" content=\"";
+                var StartPos = responseData.IndexOf(StartBlock);
+                
+            }
+
+            return Ok();
+        }
+
 
         // GET: ShopProduct
         public async Task<IActionResult> Index()
